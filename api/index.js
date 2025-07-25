@@ -33,7 +33,7 @@ app.get('/api/test', (req, res) => {
   });
 });
 
-// Auth test endpoint
+// Auth endpoints
 app.post('/api/auth/login', (req, res) => {
   try {
     const { email, password } = req.body;
@@ -71,6 +71,78 @@ app.post('/api/auth/login', (req, res) => {
       message: 'An error occurred during login'
     });
   }
+});
+
+app.get('/api/auth/me', (req, res) => {
+  res.json({
+    id: 'test-user-id',
+    email: 'test@example.com',
+    firstName: 'Test',
+    lastName: 'User'
+  });
+});
+
+// Contact endpoints
+app.get('/api/contacts', (req, res) => {
+  res.json([]);
+});
+
+app.post('/api/contacts', (req, res) => {
+  res.json({ id: 'new-contact-id', ...req.body });
+});
+
+// Campaign endpoints
+app.get('/api/campaigns', (req, res) => {
+  res.json([]);
+});
+
+app.post('/api/campaigns', (req, res) => {
+  res.json({ id: 'new-campaign-id', ...req.body });
+});
+
+// Email template endpoints
+app.get('/api/email-templates', (req, res) => {
+  res.json([]);
+});
+
+app.post('/api/email-templates', (req, res) => {
+  res.json({ id: 'new-template-id', ...req.body });
+});
+
+// Email log endpoints
+app.get('/api/email-logs', (req, res) => {
+  res.json([]);
+});
+
+app.post('/api/email-logs', (req, res) => {
+  res.json({ id: 'new-log-id', ...req.body });
+});
+
+// User preferences endpoints
+app.get('/api/user-preferences', (req, res) => {
+  res.json({
+    emailSettings: {},
+    notificationSettings: {},
+    theme: 'light'
+  });
+});
+
+app.put('/api/user-preferences', (req, res) => {
+  res.json(req.body);
+});
+
+// Review platform URLs endpoints
+app.get('/api/review-platform-urls', (req, res) => {
+  res.json({
+    google: '',
+    yelp: '',
+    facebook: '',
+    tripadvisor: ''
+  });
+});
+
+app.put('/api/review-platform-urls', (req, res) => {
+  res.json(req.body);
 });
 
 // 404 handler
